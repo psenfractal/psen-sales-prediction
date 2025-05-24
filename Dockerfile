@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Install dependencies
 COPY requirements.txt .
-COPY create_artifact_repo.py .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the current directory contents into the container
