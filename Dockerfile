@@ -19,4 +19,4 @@ EXPOSE 8080
 
 # Command to run the FastAPI app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
-
+# Test
