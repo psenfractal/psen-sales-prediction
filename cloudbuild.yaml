@@ -3,7 +3,7 @@ steps:
     args:
       [
         'build',
-        '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/cloud-run-app:$SHORT_SHA',
+        '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/psen-sales-prediction-service:$SHORT_SHA',
         '.'
       ]
     id: 'Build Docker image'
@@ -12,7 +12,7 @@ steps:
     args:
       [
         'push',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/cloud-run-app:$SHORT_SHA'
+        'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/psen-sales-prediction-service:$SHORT_SHA'
       ]
     id: 'Push to Artifact Registry'
 
@@ -21,7 +21,7 @@ steps:
     args:
       [
         'run', 'deploy', 'psen-sales-prediction-service',
-        '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/cloud-run-app:$SHORT_SHA',
+        '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/psen-sales-prediction-service:$SHORT_SHA',
         '--region', 'us-central1',
         '--platform', 'managed',
         '--allow-unauthenticated',
