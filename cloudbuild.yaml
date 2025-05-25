@@ -3,7 +3,7 @@ steps:
     args:
       [
         'build',
-        '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/psen-sales-prediction-service:$SHORT_SHA',
+        '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/cloud-run-app:$SHORT_SHA',
         '.'
       ]
     id: 'Build Docker image'
@@ -12,7 +12,7 @@ steps:
     args:
       [
         'push',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/psen-sales-prediction-service:$SHORT_SHA'
+        'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/cloud-run-app:$SHORT_SHA'
       ]
     id: 'Push to Artifact Registry'
 
@@ -20,8 +20,8 @@ steps:
     entrypoint: 'gcloud'
     args:
       [
-        'run', 'deploy', 'psen-sales-prediction-service',
-        '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/psen-sales-prediction-service:$SHORT_SHA',
+        'run', 'deploy', 'cloud-run-app',
+        '--image', 'us-central1-docker.pkg.dev/$PROJECT_ID/psen-sales-prediction/cloud-run-app:$SHORT_SHA',
         '--region', 'us-central1',
         '--platform', 'managed',
         '--allow-unauthenticated',
@@ -33,5 +33,5 @@ options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 
 substitutions:
-  _SERVICE_NAME: psen-sales-prediction-service
+  _SERVICE_NAME: cloud-run-app
 
