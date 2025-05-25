@@ -11,6 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the current directory contents into the container
 COPY . /app
 
+# Generate pickel file
+CMD ["python", "train_model.py"]
+
 # Expose the port the app will run on
 EXPOSE 8080
 
